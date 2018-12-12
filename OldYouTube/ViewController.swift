@@ -49,14 +49,12 @@ class VideoCell: UICollectionViewCell{
     let thumbnailImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.blue
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     let seperatorView : UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -80,6 +78,7 @@ extension UIView {
         var viewsDictionary = [String: UIView]()
         for(index, view) in views.enumerated(){
             let key = "v\(index)"
+            view.translatesAutoresizingMaskIntoConstraints = false
             viewsDictionary[key] = view
         }
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
