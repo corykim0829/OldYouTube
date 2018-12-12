@@ -1,45 +1,12 @@
 //
-//  ViewController.swift
+//  VideoCell.swift
 //  OldYouTube
 //
-//  Created by Cory Kim on 12/12/2018.
+//  Created by Cory Kim on 13/12/2018.
 //  Copyright © 2018 CoryKim. All rights reserved.
 //
 
 import UIKit
-
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.title = "Home"
-        
-        collectionView.backgroundColor = UIColor.white
-        
-        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-        
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = (view.frame.width - 16 - 16) * 9 / 16
-        return CGSize(width: view.frame.width, height: height + 16 + 68)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-}
 
 class VideoCell: UICollectionViewCell{
     override init(frame: CGRect) {
@@ -91,7 +58,7 @@ class VideoCell: UICollectionViewCell{
         addSubview(userProfileImageView)
         addSubview(titleLabel)
         addSubview(subtitleTextView)
-    
+        
         // horizontal constraints
         addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: thumbnailImageView)
         addConstraintsWithFormat(format: "H:|-16-[v0(44)]-16-|", views: userProfileImageView)
@@ -126,8 +93,8 @@ class VideoCell: UICollectionViewCell{
         // height constraint
         addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))
         
-//        addConstraintsWithFormat(format: "V:[v0(20)]", views: titleLabel)
-//        addConstraintsWithFormat(format: "H:|[v0]|", views: titleLabel)
+        //        addConstraintsWithFormat(format: "V:[v0(20)]", views: titleLabel)
+        //        addConstraintsWithFormat(format: "H:|[v0]|", views: titleLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -135,16 +102,3 @@ class VideoCell: UICollectionViewCell{
     }
     
 }
-
-extension UIView {
-    func addConstraintsWithFormat(format: String, views: UIView...) {
-        var viewsDictionary = [String: UIView]()
-        for(index, view) in views.enumerated(){
-            let key = "v\(index)"
-            view.translatesAutoresizingMaskIntoConstraints = false
-            viewsDictionary[key] = view
-        }
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
-    }
-}
-
