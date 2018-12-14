@@ -30,6 +30,10 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         addSubview(collectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
+        
+        // WHY?
+        let selectedIndexPath = NSIndexPath(item: 0, section: 0)
+        collectionView.selectItem(at: selectedIndexPath as IndexPath, animated: false, scrollPosition: [])
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -70,6 +74,12 @@ class MenuCell: BaseCell {
     override var isHighlighted: Bool {
         didSet {
             imageView.tintColor = isHighlighted ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13)
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            imageView.tintColor = isSelected ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13)
         }
     }
     
