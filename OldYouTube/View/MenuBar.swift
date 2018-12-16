@@ -20,7 +20,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     }()
     
     let cellId = "cellId"
-    let imageNames = ["home", "trend", "playlist", "account"]
+    let imageNames = ["home_icon", "trending_icon", "subscribe_icon", "account_icon"]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,7 +66,7 @@ class MenuCell: BaseCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "home")?.withRenderingMode(.alwaysTemplate)
+        iv.image = UIImage(named: "home_icon")?.withRenderingMode(.alwaysTemplate)
         iv.tintColor = UIColor.rgb(red: 91, green: 14, blue: 13)
         return iv
     }()
