@@ -31,7 +31,18 @@ class VideoCell: BaseCell{
             
             thumbnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
             
-            userProfileImageView.image = UIImage(named: (video?.channel?.profileImageName)!)
+            if let profileImageName = video?.channel?.profileImageName {
+                userProfileImageView.image = UIImage(named: profileImageName)
+            }
+            
+            if let channelName = video?.channel?.name, let numberOfViews = video?.numberOfViews {
+                
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                
+                let subtitleText = "\(channelName) • \(numberFormatter.string(from: numberOfViews)!) views • 2years ago"
+                subtitleTextView.text = subtitleText
+            }
         }
     }
     
@@ -100,7 +111,6 @@ class VideoCell: BaseCell{
         
         // height constraint
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
-        
         
         // top constraint
         addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 4))

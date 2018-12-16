@@ -22,11 +22,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         var sc2Video = Video()
         sc2Video.title = "Starcraft 2 Dark(Z) highlight"
         sc2Video.thumbnailImageName = "starcraft-2-zerg"
+        sc2Video.numberOfViews = 17217212
         sc2Video.channel = darkTVChannel
         
         var sktProLeagueVideo = Video()
         sktProLeagueVideo.title = "[SKT Pro League 2016] Dark(Z) vs aLive(T)"
         sktProLeagueVideo.thumbnailImageName = "dark_vs_alive"
+        sktProLeagueVideo.numberOfViews = 265248271
         sktProLeagueVideo.channel = afreecaTVChannel
         
         return [sc2Video, sktProLeagueVideo]
