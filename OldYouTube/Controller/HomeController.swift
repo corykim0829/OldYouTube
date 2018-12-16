@@ -9,12 +9,27 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+
     var videos: [Video] = {
-       var sc2Video = Video()
+        var darkTVChannel = Channel()
+        darkTVChannel.name = "DarkTV"
+        darkTVChannel.profileImageName = "Dark"
+        
+        var afreecaTVChannel = Channel()
+        afreecaTVChannel.name = "afreeca TV esports"
+        afreecaTVChannel.profileImageName = "afreecaTV"
+        
+        var sc2Video = Video()
         sc2Video.title = "Starcraft 2 Dark(Z) highlight"
         sc2Video.thumbnailImageName = "starcraft-2-zerg"
-        return [sc2Video]
+        sc2Video.channel = darkTVChannel
+        
+        var sktProLeagueVideo = Video()
+        sktProLeagueVideo.title = "[SKT Pro League 2016] Dark(Z) vs aLive(T)"
+        sktProLeagueVideo.thumbnailImageName = "dark_vs_alive"
+        sktProLeagueVideo.channel = afreecaTVChannel
+        
+        return [sc2Video, sktProLeagueVideo]
     }()
     
     override func viewDidLoad() {

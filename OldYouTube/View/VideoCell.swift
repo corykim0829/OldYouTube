@@ -25,7 +25,15 @@ class BaseCell: UICollectionViewCell{
 
 class VideoCell: BaseCell{
     
-    var video: Video?
+    var video: Video? {
+        didSet {
+            titleLabel.text = video?.title
+            
+            thumbnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
+            
+            userProfileImageView.image = UIImage(named: (video?.channel?.profileImageName)!)
+        }
+    }
     
     let thumbnailImageView : UIImageView = {
         let imageView = UIImageView()
