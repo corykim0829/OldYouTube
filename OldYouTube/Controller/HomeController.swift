@@ -10,6 +10,13 @@ import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    var videos: [Video] = {
+       var sc2Video = Video()
+        sc2Video.title = "Starcraft 2 Dark(Z) highlight"
+        sc2Video.thumbnailImageName = "starcraft-2-zerg"
+        return [sc2Video]
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,12 +69,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return videos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
+        cell.video = videos[indexPath.item]
         
         return cell
     }
