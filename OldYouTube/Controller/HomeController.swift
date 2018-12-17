@@ -34,8 +34,25 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return [sc2Video, sktProLeagueVideo]
     }()
     
+    func fetchVideo() {
+        let url = URL(fileURLWithPath: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            let str = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print(str)
+            
+        }.resume()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchVideo()
         
         navigationItem.title = "Home"
         navigationController?.navigationBar.isTranslucent = false
