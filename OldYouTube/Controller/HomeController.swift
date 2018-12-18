@@ -35,7 +35,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }()
     
     func fetchVideo() {
-        let url = URL(fileURLWithPath: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
+        guard let url = URL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             if error != nil {
@@ -44,6 +44,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
             
             let str = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("*********************************** \n lets : ")
             print(str)
             
         }.resume()
