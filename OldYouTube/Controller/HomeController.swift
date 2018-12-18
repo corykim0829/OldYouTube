@@ -10,42 +10,70 @@ import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var videos: [Video] = {
-        var darkTVChannel = Channel()
-        darkTVChannel.name = "DarkTV"
-        darkTVChannel.profileImageName = "Dark"
-        
-        var afreecaTVChannel = Channel()
-        afreecaTVChannel.name = "afreeca TV esports"
-        afreecaTVChannel.profileImageName = "afreecaTV"
-        
-        var sc2Video = Video()
-        sc2Video.title = "Starcraft 2 Dark(Z) highlight"
-        sc2Video.thumbnailImageName = "starcraft-2-zerg"
-        sc2Video.numberOfViews = 17217212
-        sc2Video.channel = darkTVChannel
-        
-        var sktProLeagueVideo = Video()
-        sktProLeagueVideo.title = "[SKT Pro League 2016] Dark(Z) vs aLive(T)"
-        sktProLeagueVideo.thumbnailImageName = "dark_vs_alive"
-        sktProLeagueVideo.numberOfViews = 265248271
-        sktProLeagueVideo.channel = afreecaTVChannel
-        
-        return [sc2Video, sktProLeagueVideo]
-    }()
+//    var videos: [Video] = {
+//        var darkTVChannel = Channel()
+//        darkTVChannel.name = "DarkTV"
+//        darkTVChannel.profileImageName = "Dark"
+//
+//        var afreecaTVChannel = Channel()
+//        afreecaTVChannel.name = "afreeca TV esports"
+//        afreecaTVChannel.profileImageName = "afreecaTV"
+//
+//        var sc2Video = Video()
+//        sc2Video.title = "Starcraft 2 Dark(Z) highlight"
+//        sc2Video.thumbnailImageName = "starcraft-2-zerg"
+//        sc2Video.numberOfViews = 17217212
+//        sc2Video.channel = darkTVChannel
+//
+//        var sktProLeagueVideo = Video()
+//        sktProLeagueVideo.title = "[SKT Pro League 2016] Dark(Z) vs aLive(T)"
+//        sktProLeagueVideo.thumbnailImageName = "dark_vs_alive"
+//        sktProLeagueVideo.numberOfViews = 265248271
+//        sktProLeagueVideo.channel = afreecaTVChannel
+//
+//        return [sc2Video, sktProLeagueVideo]
+//    }()
+    
+    var videos: [Video]?
     
     func fetchVideo() {
         guard let url = URL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             if error != nil {
-                print(error)
+                print(error ?? "")
                 return
             }
             
-            let str = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("*********************************** \n lets : ")
-            print(str)
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                
+                self.videos = [Video]()
+                
+                for dictionary in json as! [[String: AnyObject]] {
+                    
+                    let video = Video()
+                    video.title = dictionary["title"] as? String
+                    video.thumbnailImageName = dictionary["thumbnail_image_name"] as? String
+                    
+                    let channelDictionary = dictionary["channel"] as! [String: AnyObject]
+                    
+                    let channel = Channel()
+                    channel.name = channelDictionary["name"] as? String
+                    channel.profileImageName = channelDictionary["profile_image_name"] as? String
+                    
+                    video.channel = channel
+                    
+                    self.videos?.append(video)
+                }
+                
+                DispatchQueue.main.sync {
+                    self.collectionView?.reloadData()
+                }
+                
+            } catch let jsonErr {
+                print("Error serializing json:", jsonErr)
+            }
             
         }.resume()
     }
@@ -104,12 +132,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videos.count
+        return videos?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
-        cell.video = videos[indexPath.item]
+        cell.video = videos?[indexPath.item]
         
         return cell
     }
