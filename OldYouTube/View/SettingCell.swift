@@ -11,7 +11,6 @@ import UIKit
 class SettingCell: BaseCell {
     
     
-    
     override func setupViews() {
         super.setupViews()
         
