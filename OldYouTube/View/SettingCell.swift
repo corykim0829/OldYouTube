@@ -10,11 +10,22 @@ import UIKit
 
 class SettingCell: BaseCell {
     
+    override var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? UIColor.darkGray : UIColor.white
+            
+            nameLabel.textColor = isHighlighted ? UIColor.white : UIColor.black
+            
+            iconImageView.tintColor = isHighlighted ? UIColor.white : UIColor.darkGray
+        }
+    }
+    
     var setting: Setting? {
         didSet {
             nameLabel.text = setting?.name
             if (setting?.imageName) != nil {
-                iconImageView.image = UIImage(named: (setting?.imageName)!)
+                iconImageView.image = UIImage(named: (setting?.imageName)!)?.withRenderingMode(.alwaysTemplate)
+                iconImageView.tintColor = UIColor.darkGray
             }
         }
     }
