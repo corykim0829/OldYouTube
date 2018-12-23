@@ -116,7 +116,8 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
             
         }) { (completed: Bool) in
             
-            self.homeController?.showControllerForSettings()
+            let setting = self.settings[indexPath.item]
+            self.homeController?.showControllerForSettings(setting: setting)
             
         }
     
