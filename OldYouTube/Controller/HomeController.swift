@@ -112,11 +112,20 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationItem.rightBarButtonItems = [moreButton, searchBarButtonItem]
     }
     
-    let settingLauncher = SettingsLauncher()
+    lazy var settingLauncher: SettingsLauncher = {
+        let launcher = SettingsLauncher()
+        launcher.homeController = self
+        return launcher
+    }()
     
     @objc func handleMore() {
         // show menu
         settingLauncher.showSettings()
+    }
+    
+    func showControllerForSettings() {
+        let dummySettingViewController = UIViewController()
+        navigationController?.pushViewController(dummySettingViewController, animated: true)
     }
     
     @objc func handleSearch() {

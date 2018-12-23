@@ -41,6 +41,8 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
                 Setting(name: "Cancel", imageName: "cancel")]
     }()
     
+    var homeController: HomeController?
+    
     @objc func showSettings() {
         // show menu
         
@@ -112,7 +114,9 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
                 self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
             }
             
-        }) { (compledted: Bool) in
+        }) { (completed: Bool) in
+            
+            self.homeController?.showControllerForSettings()
             
         }
     
