@@ -79,9 +79,9 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
                 self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
             }
             
-        }) { (completed: Bool) in
+        }) { (_) in
             
-            if setting.name != "Cancel" {
+            if !setting.isKind(of: UITapGestureRecognizer.self) && setting.name != "Cancel" {
                 self.homeController?.showControllerForSettings(setting: setting)
             }
             

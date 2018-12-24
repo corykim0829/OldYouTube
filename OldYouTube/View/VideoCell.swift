@@ -76,7 +76,7 @@ class VideoCell: BaseCell{
     
     let thumbnailImageView : CustomImageView = {
         let imageView = CustomImageView()
-        imageView.image = UIImage(named: "starcraft-2-zerg")
+//        imageView.image = UIImage(named: "starcraft-2-zerg")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -84,7 +84,7 @@ class VideoCell: BaseCell{
     
     let userProfileImageView : CustomImageView = {
         let imageView = CustomImageView()
-        imageView.image = UIImage(named: "Dark")
+//        imageView.image = UIImage(named: "Dark")
         imageView.layer.cornerRadius = 22
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
