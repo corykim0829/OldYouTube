@@ -9,30 +9,6 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
-//    var videos: [Video] = {
-//        var darkTVChannel = Channel()
-//        darkTVChannel.name = "DarkTV"
-//        darkTVChannel.profileImageName = "Dark"
-//
-//        var afreecaTVChannel = Channel()
-//        afreecaTVChannel.name = "afreeca TV esports"
-//        afreecaTVChannel.profileImageName = "afreecaTV"
-//
-//        var sc2Video = Video()
-//        sc2Video.title = "Starcraft 2 Dark(Z) highlight"
-//        sc2Video.thumbnailImageName = "starcraft-2-zerg"
-//        sc2Video.numberOfViews = 17217212
-//        sc2Video.channel = darkTVChannel
-//
-//        var sktProLeagueVideo = Video()
-//        sktProLeagueVideo.title = "[SKT Pro League 2016] Dark(Z) vs aLive(T)"
-//        sktProLeagueVideo.thumbnailImageName = "dark_vs_alive"
-//        sktProLeagueVideo.numberOfViews = 265248271
-//        sktProLeagueVideo.channel = afreecaTVChannel
-//
-//        return [sc2Video, sktProLeagueVideo]
-//    }()
     
     var videos: [Video]?
     
@@ -82,12 +58,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
         
         fetchVideo()
-        
-        navigationItem.title = "Home"
+
         navigationController?.navigationBar.isTranslucent = false
         
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
-        titleLabel.text = "Home"
+        titleLabel.text = "  Home"
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont.systemFont(ofSize: 20)
         navigationItem.titleView = titleLabel
@@ -142,9 +117,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }()
     
     private func setupMenuBar() {
+        navigationController?.hidesBarsOnSwipe = true
+        
+        let redView = UIView()
+        redView.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31)
+        view.addSubview(redView)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: redView)
+        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: redView)
+        
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
+        
+        menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
