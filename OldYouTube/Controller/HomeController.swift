@@ -13,45 +13,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var videos: [Video]?
     
     func fetchVideo() {
-        guard let url = URL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json") else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        ApiService.sharedInstance.fetchVideos { (videos: [Video]) in
             
-            if error != nil {
-                print(error ?? "")
-                return
-            }
+            self.videos = videos
+            self.collectionView?.reloadData()
             
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                
-                self.videos = [Video]()
-                
-                for dictionary in json as! [[String: AnyObject]] {
-                    
-                    let video = Video()
-                    video.title = dictionary["title"] as? String
-                    video.thumbnailImageName = dictionary["thumbnail_image_name"] as? String
-                    
-                    let channelDictionary = dictionary["channel"] as! [String: AnyObject]
-                    
-                    let channel = Channel()
-                    channel.name = channelDictionary["name"] as? String
-                    channel.profileImageName = channelDictionary["profile_image_name"] as? String
-                    
-                    video.channel = channel
-                    
-                    self.videos?.append(video)
-                }
-                
-                DispatchQueue.main.sync {
-                    self.collectionView?.reloadData()
-                }
-                
-            } catch let jsonErr {
-                print("Error serializing json:", jsonErr)
-            }
-            
-        }.resume()
+        }
     }
     
     override func viewDidLoad() {
