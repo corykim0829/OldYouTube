@@ -9,13 +9,22 @@
 import UIKit
 
 class Setting: NSObject {
-    let name: String
+    let name: SettingName
     let imageName: String
     
-    init(name: String, imageName: String) {
+    init(name: SettingName, imageName: String) {
         self.name = name
         self.imageName = imageName
     }
+}
+
+enum SettingName: String {
+    case cancel = "Cancel & Dismiss"
+    case settings = "Settings"
+    case termsPrivacy = "Terms & privacy policy"
+    case sendFeedback = "Send Feedback"
+    case help = "Help"
+    case switchAccount = "Switch Account"
 }
 
 class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -33,12 +42,12 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     let cellHeight: CGFloat = 50
     
     let settings: [Setting] = {
-        return [Setting(name: "Settings", imageName: "settings"),
-                Setting(name: "Terms & privacy policy", imageName: "privacy"),
-                Setting(name: "Send Feedback", imageName: "feedback"),
-                Setting(name: "Help", imageName: "help"),
-                Setting(name: "Switch Account", imageName: "switch_account"),
-                Setting(name: "Cancel", imageName: "cancel")]
+        return [Setting(name: .settings, imageName: "settings"),
+                Setting(name: .termsPrivacy, imageName: "privacy"),
+                Setting(name: .sendFeedback, imageName: "feedback"),
+                Setting(name: .help, imageName: "help"),
+                Setting(name: .switchAccount, imageName: "switch_account"),
+                Setting(name: .cancel, imageName: "cancel")]
     }()
     
     var homeController: HomeController?
@@ -81,7 +90,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
             
         }) { (_) in
             
-            if !setting.isKind(of: UITapGestureRecognizer.self) && setting.name != "Cancel" {
+            if !setting.isKind(of: UITapGestureRecognizer.self) && setting.name != .cancel {
                 self.homeController?.showControllerForSettings(setting: setting)
             }
             
