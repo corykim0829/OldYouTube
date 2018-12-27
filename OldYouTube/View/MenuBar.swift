@@ -21,6 +21,8 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     
     let cellId = "cellId"
     let imageNames = ["home_icon", "trending_icon", "subscribe_icon", "account_icon"]
+    
+    var homeController: HomeController?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,16 +62,14 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let x = CGFloat(indexPath.item) * (frame.width / 4)
-        horizontalBarLeftAnchorConstraint?.constant = x
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.layoutIfNeeded()
-        }, completion: nil)
-        
-//        UIView.animate(withDuration: 0.75) {
+//        let x = CGFloat(indexPath.item) * (frame.width / 4)
+//        horizontalBarLeftAnchorConstraint?.constant = x
+//
+//        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
 //            self.layoutIfNeeded()
-//        }
+//        }, completion: nil)
+        
+        homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
