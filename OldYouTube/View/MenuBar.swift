@@ -34,8 +34,8 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
         
         // WHY?
-        let selectedIndexPath = NSIndexPath(item: 0, section: 0)
-        collectionView.selectItem(at: selectedIndexPath as IndexPath, animated: false, scrollPosition: [])
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredHorizontally)
         
         setupHorizontalBar()
     }
@@ -62,13 +62,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let x = CGFloat(indexPath.item) * (frame.width / 4)
-//        horizontalBarLeftAnchorConstraint?.constant = x
-//
-//        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//            self.layoutIfNeeded()
-//        }, completion: nil)
-        
+        // Horizontal Bar 이동하는 코드
         homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
     }
     
