@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3817805721C18F1D00069F97 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817805621C18F1D00069F97 /* Extensions.swift */; };
 		3817805A21C18F9E00069F97 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817805921C18F9E00069F97 /* VideoCell.swift */; };
+		38283D6821DB9B95008318BE /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38283D6721DB9B95008318BE /* TrendingCell.swift */; };
+		38283D6A21DBA817008318BE /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38283D6921DBA817008318BE /* SubscriptionCell.swift */; };
 		3876469E21C3A96D00125BDF /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876469D21C3A96D00125BDF /* MenuBar.swift */; };
 		388BA18821C61F920003BF79 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388BA18721C61F920003BF79 /* Video.swift */; };
 		389A199E21CD367D00A50405 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389A199D21CD367D00A50405 /* SettingsLauncher.swift */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		3817805621C18F1D00069F97 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3817805921C18F9E00069F97 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		38283D6721DB9B95008318BE /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
+		38283D6921DBA817008318BE /* SubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
 		3876469D21C3A96D00125BDF /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		388BA18721C61F920003BF79 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		389A199D21CD367D00A50405 /* SettingsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				3876469D21C3A96D00125BDF /* MenuBar.swift */,
 				389A199F21CD643C00A50405 /* SettingCell.swift */,
 				38F95F1821D90367007AA68A /* FeedCell.swift */,
+				38283D6721DB9B95008318BE /* TrendingCell.swift */,
+				38283D6921DBA817008318BE /* SubscriptionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 			files = (
 				389A199E21CD367D00A50405 /* SettingsLauncher.swift in Sources */,
 				38F95F1921D90367007AA68A /* FeedCell.swift in Sources */,
+				38283D6821DB9B95008318BE /* TrendingCell.swift in Sources */,
 				38E5413F21C054ED00EB03B7 /* HomeController.swift in Sources */,
 				389A19A021CD643C00A50405 /* SettingCell.swift in Sources */,
 				388BA18821C61F920003BF79 /* Video.swift in Sources */,
@@ -270,6 +277,7 @@
 				38F86DFE21D3B5B100A8C742 /* ApiService.swift in Sources */,
 				3817805721C18F1D00069F97 /* Extensions.swift in Sources */,
 				38E5413D21C054ED00EB03B7 /* AppDelegate.swift in Sources */,
+				38283D6A21DBA817008318BE /* SubscriptionCell.swift in Sources */,
 				3876469E21C3A96D00125BDF /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
