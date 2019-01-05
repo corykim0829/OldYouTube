@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class VideoPlayerView: UIView {
     
@@ -14,6 +15,19 @@ class VideoPlayerView: UIView {
         super.init(frame: frame)
         
         backgroundColor = .black
+        
+        let urlString = "https://firebasestorage.googleapis.com/v0/b/gameofchats-762ca.appspot.com/o/message_movies%2F12323439-9729-4941-BA07-2BAE970967C7.mov?alt=media&token=3e37a093-3bc8-410f-84d3-38332af9c726"
+        
+        if let url = NSURL(string: urlString) {
+            let player = AVPlayer(url: url as URL)
+
+            let playerLayer = AVPlayerLayer(player: player)
+            
+            self.layer.addSublayer(playerLayer)
+            playerLayer.frame = self.frame
+
+            player.play()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,12 +50,12 @@ class VideoLauncher: NSObject {
             
             let statusBarHeight: CGFloat = 40
             let statusBarBackgroundView = UIView()
-            statusBarBackgroundView.backgroundColor = .black
+            statusBarBackgroundView.backgroundColor = .blue
             statusBarBackgroundView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: statusBarHeight)
             view.addSubview(statusBarBackgroundView)
             
             // 16 : 9 is the aspect ratio of all HD videos
-            let height = keyWindow.frame.width / 16 * 9
+            let height = keyWindow.frame.width * 9 / 16
             let videoPlayerFrame = CGRect(x: 0, y: statusBarHeight, width: keyWindow.frame.width, height: height)
             let videoPlayerView = VideoPlayerView(frame: videoPlayerFrame)
             
