@@ -2,11 +2,11 @@
 
 **Goal**
 
-![README_AppImage](/Users/CoryKim/Documents/Cory_Kim/iOS/boostcamp/LetsBuildThatYouTube/OldYouTube/README_AppImage.png)
+![README_AppImage](https://github.com/corykim0829/OldYouTube/blob/master/README_AppImage.png)
 
 ## MVC Model
 
-![README_MVC](/Users/CoryKim/Documents/Cory_Kim/iOS/boostcamp/LetsBuildThatYouTube/OldYouTube/README_MVC.png)
+![README_MVC](https://github.com/corykim0829/OldYouTube/blob/master/README_MVC.png)
 
 
 
