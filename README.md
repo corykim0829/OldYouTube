@@ -1,3 +1,17 @@
+##Youtube (old version) without Storyboard
+
+**Goal**
+
+![README_AppImage](/Users/CoryKim/Documents/Cory_Kim/iOS/boostcamp/LetsBuildThatYouTube/OldYouTube/README_AppImage.png)
+
+## MVC Model
+
+![README_MVC](/Users/CoryKim/Documents/Cory_Kim/iOS/boostcamp/LetsBuildThatYouTube/OldYouTube/README_MVC.png)
+
+
+
+
+
 ## Commit 로그 규칙
 
 - 포멧 : `{prefix}: {변경 내용} (#{이슈번호})`
