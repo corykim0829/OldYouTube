@@ -66,14 +66,16 @@ class VideoPlayerView: UIView {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumTrackTintColor = .red
         slider.maximumTrackTintColor = .white
-        slider.setThumbImage(UIImage(named: "thumb"), for: .normal)
+        
+        let thumbImage = UIImage(named: "thumb")
+        slider.setThumbImage(thumbImage, for: .normal)
         
         slider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
         return slider
     }()
     
     @objc func handleSliderChange() {
-        print(videoSlider.value)
+//        print(videoSlider.value)
         
         if let duration = player?.currentItem?.duration {
             let totalSeconds = CMTimeGetSeconds(duration)
@@ -125,20 +127,27 @@ class VideoPlayerView: UIView {
     var player: AVPlayer?
     
     private func setupPlayerView() {
-        let urlString = "https://firebasestorage.googleapis.com/v0/b/gameofchats-762ca.appspot.com/o/message_movies%2F12323439-9729-4941-BA07-2BAE970967C7.mov?alt=media&token=3e37a093-3bc8-410f-84d3-38332af9c726"
-        
-        if let url = NSURL(string: urlString) {
-            player = AVPlayer(url: url as URL)
-            
-            let playerLayer = AVPlayerLayer(player: player)
-            
-            self.layer.addSublayer(playerLayer)
-            playerLayer.frame = self.frame
-            
-            player?.play()
-            
-            player?.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
+        guard let path = Bundle.main.path(forResource: "video", ofType: "mp4") else {
+            debugPrint("video.mp4 not found")
+            return
         }
+        
+//        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        
+//        let urlString = "https://firebasestorage.googleapis.com/v0/b/gameofchats-762ca.appspot.com/o/message_movies%2F12323439-9729-4941-BA07-2BAE970967C7.mov?alt=media&token=3e37a093-3bc8-410f-84d3-38332af9c726"
+        
+        let url = URL(fileURLWithPath: path)
+        player = AVPlayer(url: url)
+//            player = AVPlayer(url: url as URL)
+            
+        let playerLayer = AVPlayerLayer(player: player)
+            
+        self.layer.addSublayer(playerLayer)
+        playerLayer.frame = self.frame
+            
+        player?.play()
+            
+        player?.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
