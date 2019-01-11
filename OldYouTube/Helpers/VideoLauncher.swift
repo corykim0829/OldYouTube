@@ -66,7 +66,7 @@ class VideoPlayerView: UIView {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumTrackTintColor = .red
         slider.maximumTrackTintColor = .white
-//        slider.setThumbImage(UIImage(named: ""), for: .normal)
+        slider.setThumbImage(UIImage(named: "thumb"), for: .normal)
         
         slider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
         return slider
